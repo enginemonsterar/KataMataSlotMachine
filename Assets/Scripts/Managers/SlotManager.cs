@@ -10,6 +10,10 @@ public class SlotManager : Singleton<SlotManager>
     [SerializeField] private Slot[] slots;
     [SerializeField] private Sprite[] prizeSprites;
 
+    private int slotResultA;
+    private int slotResultB;
+    private int slotResultC;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +33,33 @@ public class SlotManager : Singleton<SlotManager>
 
     public void GoRolling(){
         StartCoroutine(RollingSlots());
+        RandomResult();
     }
+
+    public void RandomResult(){
+        slotResultA = Random.Range(0, prizeSprites.Length);
+        slotResultB = Random.Range(0, prizeSprites.Length);
+        slotResultC = Random.Range(0, prizeSprites.Length);
+        Debug.Log(slotResultA + " " + slotResultB + " " + slotResultC);
+    }
+
+    public Sprite GetPrizeSprite(int index){
+        return prizeSprites[index];
+    }
+
+    public Sprite[] GetPrizeSprites(){
+        return prizeSprites;
+    }
+
+    public int GetSlotResultA(){
+        return slotResultA;
+    }
+    public int GetSlotResultB(){
+        return slotResultB;
+    }
+    public int GetSlotResultC(){
+        return slotResultC;
+    }
+
+   
 }
